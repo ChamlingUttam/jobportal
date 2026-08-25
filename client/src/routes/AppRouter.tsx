@@ -3,12 +3,14 @@ import Home from "../pages/home/Home"
 import Login from "../pages/auth/Login"
 import { Protected } from "./ProtectedRoute"
 import Dashboard from "../pages/dashboard/Dashboard"
+import Register from "../pages/auth/Register"
 
 const AppRouter = () => {
   return (
     <Routes>
       <Route path="/" element={<Home/>} />
       <Route path="/login" element={<Login/>} />
+      <Route path="/register" element={<Register/>} />
       {/* <Route path="/dashboard" element={<Dashboard/>} /> */}
       
       <Route path="/dashboard" element={

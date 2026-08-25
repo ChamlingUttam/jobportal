@@ -2,6 +2,8 @@ import {  useState } from "react"
 import { useAppDispatch, useAppSelector } from "../../app/hooks"
 import {  loginUser } from "../../features/auth/authSlice"
 import { Eye, EyeClosed } from "lucide-react"
+import { Link, useNavigate } from "react-router-dom"
+import toast from "react-hot-toast"
 
 
 const Login = () => {
@@ -9,14 +11,28 @@ const Login = () => {
     const [password,setPassword] = useState("")
 
     const dispatch = useAppDispatch()
+    const navigate = useNavigate()
 
-    const handleSubmit =(e:React.SubmitEvent<HTMLFormElement>)=>{
+    const handleSubmit =async(e:React.SubmitEvent<HTMLFormElement>)=>{
         e.preventDefault()
 
-        dispatch(loginUser({
+
+        try {
+       await dispatch(loginUser({
             email,
             password
-        }))
+        })).unwrap()
+
+ navigate("/dashboard")
+
+        toast.success("successfully logged in")
+
+  
+        } catch (error) {
+          toast.error("logged in failed")
+        }
+        
+       
 
 
     }
@@ -101,12 +117,9 @@ const Login = () => {
  
         <p className="text-sm text-slate-500 text-center mt-6">
           Don't have an account?{" "}
-          <a
-            href="#"
-            className="text-slate-900 font-medium hover:underline"
-          >
+          <Link to={"/register"}   className="text-slate-900 font-medium hover:underline">
             Create one
-          </a>
+          </Link>
         </p>
       </div>
     </div>
