@@ -1,6 +1,7 @@
 import { createSlice ,createAsyncThunk} from "@reduxjs/toolkit";
 import type { shapeOfAuth } from "./authTypes";
 import { login } from "./authApi";
+import { getSavedUser, logout, saveUser } from "./authLocalStorage";
 
 const initialState :shapeOfAuth = {
     user:null,
@@ -13,7 +14,6 @@ export const loginUser = createAsyncThunk(
   "auth/login",
   async ({ email, password }: { email: string; password: string }) => {
     const user = login(email, password);
-
     return user;
   }
 );
@@ -22,6 +22,21 @@ export const authSlice = createSlice({
     name:"auth",
     initialState,
     reducers:{
+
+      getDataAfterRefresh:(state)=>{
+        const user = getSavedUser()
+
+        if(user){
+          state.user = user
+          state.isAuthenticated = true
+        }
+      },
+
+      removeData:(state)=>{
+        logout()
+          state.user = null;
+          state.isAuthenticated = false;
+      },
 
 
     },
@@ -36,6 +51,8 @@ export const authSlice = createSlice({
   state.loading = false;
   state.user = action.payload;
   state.isAuthenticated = true;
+
+  saveUser(action.payload)
 });
 
 builder.addCase(loginUser.rejected, (state, action) => {
@@ -48,7 +65,7 @@ builder.addCase(loginUser.rejected, (state, action) => {
   
 })
 
-
+export const {getDataAfterRefresh,removeData}  = authSlice.actions
 export default authSlice.reducer;
 
 

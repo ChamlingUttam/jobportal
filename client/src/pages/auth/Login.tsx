@@ -1,6 +1,6 @@
-import { useState } from "react"
+import {  useState } from "react"
 import { useAppDispatch, useAppSelector } from "../../app/hooks"
-import { loginUser } from "../../features/auth/authSlice"
+import {  loginUser } from "../../features/auth/authSlice"
 import { Eye, EyeClosed } from "lucide-react"
 
 
@@ -29,7 +29,7 @@ const Login = () => {
 
     const [hide,setHide] = useState(false)
 
-
+   
   return (
    <div className="min-h-screen w-full flex items-center justify-center bg-slate-50 px-4">
       <div className="w-full max-w-sm bg-white rounded-2xl shadow-sm border border-slate-200 p-8">

@@ -1,7 +1,11 @@
 // import { useAppDispatch, useAppSelector } from "./app/hooks";
 // import { loginUser } from "./features/auth/authSlice";
 
+import { useEffect } from "react"
+import { useAppDispatch } from "./app/hooks"
 import Login from "./pages/auth/Login"
+import { getDataAfterRefresh } from "./features/auth/authSlice"
+import Logout from "./components/common/Logout"
 
 // function App() {
 //   const dispatch = useAppDispatch();
@@ -42,9 +46,16 @@ import Login from "./pages/auth/Login"
 
 
 const App = () => {
+
+  const dispatch = useAppDispatch()
+
+  useEffect(()=>{
+    dispatch(getDataAfterRefresh())
+  },[dispatch])
   return (
     <div>
       <Login/>
+      <Logout/>
     </div>
   )
 }
