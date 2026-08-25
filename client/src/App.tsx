@@ -3,9 +3,10 @@
 
 import { useEffect } from "react"
 import { useAppDispatch } from "./app/hooks"
-import Login from "./pages/auth/Login"
+// import Login from "./pages/auth/Login"
 import { getDataAfterRefresh } from "./features/auth/authSlice"
-import Logout from "./components/common/Logout"
+// import Logout from "./components/common/Logout"
+import AppRouter from "./routes/AppRouter"
 
 // function App() {
 //   const dispatch = useAppDispatch();
@@ -54,8 +55,7 @@ const App = () => {
   },[dispatch])
   return (
     <div>
-      <Login/>
-      <Logout/>
+    <AppRouter/>
     </div>
   )
 }
