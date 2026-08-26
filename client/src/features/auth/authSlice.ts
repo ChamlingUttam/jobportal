@@ -3,11 +3,13 @@ import type { shapeOfAuth } from "./authTypes";
 import { login, register } from "../../services/authApi";
 import { getSavedUser, logout, saveUser } from "../../services/authLocalStorage";
 
+
 const initialState :shapeOfAuth = {
     user:null,
     isAuthenticated:false,
     loading:false,
-    error:null
+    error:null,
+    authInitialized:false
 }
 
 export const loginUser = createAsyncThunk(
@@ -39,6 +41,7 @@ export const authSlice = createSlice({
           state.user = user
           state.isAuthenticated = true
         }
+          state.authInitialized = true
       },
 
       removeData:(state)=>{

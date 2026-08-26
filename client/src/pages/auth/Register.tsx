@@ -13,17 +13,22 @@ export default function Register() {
 
     const dispatch  =  useAppDispatch()
     const navigate = useNavigate()
-    const handleSubmit = (e:React.SubmitEvent<HTMLFormElement>)=>{
+    const handleSubmit = async(e:React.SubmitEvent<HTMLFormElement>)=>{
 
         e.preventDefault()
-        dispatch(registerUser({
+     try {
+        await dispatch(registerUser({
             name,
             email,
             password
-        }))
-        navigate("/login")
+        })).unwrap()
+         navigate("/login")
 
         toast.success("successfully register complete")
+     } catch (error) {
+        toast.error("please check all the field")
+     }
+       
     }
 
     const {error,loading} = useAppSelector(
