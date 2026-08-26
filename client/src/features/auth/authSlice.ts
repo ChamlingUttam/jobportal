@@ -1,7 +1,7 @@
 import { createSlice ,createAsyncThunk} from "@reduxjs/toolkit";
 import type { shapeOfAuth } from "./authTypes";
-import { login, register } from "../../services/authApi";
-import { getSavedUser, logout, saveUser } from "../../services/authLocalStorage";
+import { login, register } from "../../services/auth/authApi";
+import { getSavedUser, logout, saveUser } from "../../services/auth/authLocalStorage";
 
 
 const initialState :shapeOfAuth = {

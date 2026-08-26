@@ -1,5 +1,5 @@
 
-import type { User } from "../types";
+import type { User } from "../../types";
 // import { error } from "console";
 
 export const mockUser:User[] =[
