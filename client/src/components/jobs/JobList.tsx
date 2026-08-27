@@ -39,10 +39,10 @@ const JobList = () => {
   
   console.log("jobs:", jobs, "loading:", loading, "error:", error);
   return (
-    <div className="p-6 max-w-350 mx-auto">
+    <div className="p-6 w-full lg:max-w-350 mx-auto bg-gray-900 text-white h-full">
       <div className="w-full flex justify-between p-2">
       <span> 
-         <h1 className="mb-6 text-2xl md:text-3xl font-bold">
+         <h1 className="mb-6 text-2xl md:text-3xl font-bold hidden md:block">
         Open Positions ({filterJobs.length})
       </h1></span>
       <div className=" relative ">
@@ -50,10 +50,10 @@ const JobList = () => {
          <span>
         <input
         onChange={(e)=>setSearch(e.target.value)}
-         type="text" placeholder="search job by comapyn,titl,types..."  className="text-md text-gray-600 p-2 w-sm border border-gray-400 rounded-lg" />
+         type="text" placeholder="search job by comapyn,titl,types..."  className="text-md text-white p-2 lg:w-sm w-full  border border-gray-400 rounded-lg" />
       </span>
       <span className=" absolute right-2  top-2">
-        <Search className="text-gray-400"/>
+        <Search className="text-gray-400 hidden lg:block"/>
       </span>
       </div>
      

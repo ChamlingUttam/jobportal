@@ -1,11 +1,12 @@
 import JobList from "../../components/jobs/JobList"
+// import Navbar from "../../components/layout/Navbar"
 
 
 
 const Dashboard = () => {
   return (
     <div>
-      hello form dashboard
+      {/* <Navbar/> */}
       <JobList/>
     </div>
   )
