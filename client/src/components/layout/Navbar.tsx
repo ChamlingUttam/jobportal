@@ -22,7 +22,7 @@ const Navbar = () => {
             <span><h1 className="font-bold text-white text-2xl">Job Portal</h1></span>
         </div>
         {/** right side -*/}
-       <div className="flex items-center justify-between w-full md:w-2xl">
+       <div className="flex items-center justify-between w-full md:w-3xl">
          <div>
             <ul className="flex md:gap-8 gap-4 pr-16 p-2 items-center text-white">
                     <Link to={"/jobPage"}>

@@ -1,6 +1,6 @@
 import { createSlice ,createAsyncThunk} from "@reduxjs/toolkit";
 import type { shapeOfAuth } from "./authTypes";
-import { login, register } from "../../services/auth/authApi";
+import { login, register, updateUser } from "../../services/auth/authApi";
 import { getSavedUser, logout, saveUser } from "../../services/auth/authLocalStorage";
 
 
@@ -19,6 +19,17 @@ export const loginUser = createAsyncThunk(
     return user;
   }
 );
+
+
+export const userNameUpdate = createAsyncThunk(
+  "auth/update",
+  async ({userId,newName}:{userId:number,newName:string})=>{
+    const updateUserName = updateUser(userId,newName)
+    return updateUserName
+  }
+
+)
+
 
 export const registerUser = createAsyncThunk(
   "auth/register",
@@ -50,6 +61,13 @@ export const authSlice = createSlice({
           state.isAuthenticated = false;
       },
 
+      // updateUserName:(state,action)=>{
+      //   if(state.user){
+      //     state.user.name = action.payload
+      //     saveUser(state.user)
+      //   }
+      // }
+
 
     },
 
@@ -73,6 +91,9 @@ builder.addCase(loginUser.rejected, (state, action) => {
   state.isAuthenticated = false;
 });
 
+
+{/** for register */}
+
 builder.addCase(registerUser.pending,(state)=>{
   state.loading = true
   state.error = null
@@ -91,11 +112,37 @@ builder.addCase(registerUser.rejected, (state, action) => {
   state.error = action.error.message || "Registration failed";
   state.isAuthenticated = false;
 });
+
+// {/** update profile */}
+
+builder.addCase(userNameUpdate.pending,(state)=>{
+  state.loading = true
+  state.error = null
+})
+
+ builder.addCase(userNameUpdate.fulfilled, (state, action) => {
+  state.loading = false;
+  state.error = null
+  state.user = action.payload;
+  // state.isAuthenticated = true;
+
+  saveUser(action.payload)
+});
+
+builder.addCase(userNameUpdate.rejected, (state, action) => {
+  state.loading = false;
+  state.error = action.error.message || " failed to update";
+  // state.isAuthenticated = false;
+});
   },
+
+})
+
+
+
 
   
   
-})
 
 export const {getDataAfterRefresh,removeData}  = authSlice.actions
 export default authSlice.reducer;

@@ -34,13 +34,26 @@
 
 
 import { User } from 'lucide-react'
-// import React from 'react'
+import {useState} from 'react'
 // import { useSearchParams } from 'react-router-dom'
-import { useAppSelector } from '../../app/hooks'
+import { useAppDispatch, useAppSelector } from '../../app/hooks'
+import { userNameUpdate } from '../../features/auth/authSlice'
+// import { updateUserName } from '../../features/auth/authSlice'
+// import { saveUser } from '../../services/auth/authLocalStorage'
+// import { useActionData } from 'react-router-dom'
 
 const Setting = () => {
   const {user} = useAppSelector((state)=>state.auth)
-  return (
+
+  const [change,setChange] = useState("")
+
+  const dispatch = useAppDispatch()
+  const handleChange = ()=>{
+    dispatch((userNameUpdate({userId:user.id,newName:change})))
+    setChange("")
+
+  }
+   return (
     <div className='flex items-center justify-center bg-gray-900 w-full min-h-screen p-4'>
       <div className='flex flex-col w-full max-w-sm'>
         {/** profile card */}
@@ -74,12 +87,17 @@ const Setting = () => {
             <label className='text-gray-300 text-sm'>New Name</label>
             <input
               type="text"
+              value={change}
+              onChange={(e)=>setChange(e.target.value)}
               placeholder="Enter new name"
               className='bg-gray-700 text-white rounded-md px-3 py-2 text-sm border border-gray-600 focus:outline-none focus:border-blue-500'
             />
+            
           </div>
 
-          <button className='mt-2 bg-blue-500 hover:bg-blue-600 transition-colors text-white text-sm font-medium rounded-md py-2'>
+          <button 
+          onClick={handleChange}
+          type="submit" className='mt-2 bg-blue-500 hover:bg-blue-600 transition-colors text-white text-sm font-medium rounded-md py-2'>
             Save Changes
           </button>
         </div>

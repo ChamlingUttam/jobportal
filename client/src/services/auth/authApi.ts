@@ -97,6 +97,19 @@ export const login =  (email:string,password:string)=>{
     }
 
 
+    export const updateUser = (userId:number,newName:string)=>{
+        const user = mockUser.find((user)=>user.id === userId)
+
+        if(!user){
+            throw new Error("user not found")
+        }
+
+        user.name = newName
+
+        return user
+        
+    }
+
     // export const logout = ()=>{
 
     // }
