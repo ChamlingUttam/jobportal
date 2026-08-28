@@ -39,8 +39,8 @@ const JobList = () => {
   
   console.log("jobs:", jobs, "loading:", loading, "error:", error);
   return (
-    <div className="p-6 w-full lg:max-w-350 mx-auto bg-gray-900 text-white h-full">
-      <div className="w-full flex justify-between p-2">
+    <div className="p-6 w-full lg:max-w-350 mx-auto bg-gray-900 text-white ">
+      <div className="w-full flex justify-between  p-2">
       <span> 
          <h1 className="mb-6 text-2xl md:text-3xl font-bold hidden md:block">
         Open Positions ({filterJobs.length})

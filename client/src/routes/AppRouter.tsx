@@ -4,7 +4,7 @@ import { Protected } from "./ProtectedRoute"
 import Dashboard from "../pages/dashboard/Dashboard"
 import Register from "../pages/auth/Register"
 import Setting from "../pages/setting/Setting"
-import JobApplication from "../pages/application/JobApplication"
+import JobApplication from "../pages/jobApplication/JobApplication"
 import MainLayout from "../components/layout/MainLayout"
 import JobPage from "../pages/job/JobPage"
 
