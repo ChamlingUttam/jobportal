@@ -101,10 +101,12 @@
 
 import React from "react";
 import type { Job } from "../../types"; // adjust path if needed
-import { Clock, MapPin, Wallet } from "lucide-react";
+import { ArrowRight, Clock, MapPin, Wallet } from "lucide-react";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { applyJob } from "../../features/application/jobApplicationSlice";
 import toast from "react-hot-toast";
+import { Link } from "react-router-dom";
+
 
 interface JobCardProps {
   job: Job;
@@ -212,7 +214,18 @@ const { user } = useAppSelector((state) => state.auth);
           <span>Posted {formatDate(job.postedAt)}</span>
         </div>
       </div>
+      
+         <div className="flex  p-4">
+           <Link to={`/jobs/${job.id}`}>
+           see details
+          </Link>
+          <span>
+            <ArrowRight/>
+          </span>
 
+
+         </div>
+        
       <button
         className="w-full bg-blue-500 hover:bg-blue-600 text-white font-bold rounded-b-lg p-2"
         type="button"

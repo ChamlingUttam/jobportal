@@ -7,6 +7,7 @@ import Setting from "../pages/setting/Setting"
 import JobApplication from "../pages/jobApplication/JobApplication"
 import MainLayout from "../components/layout/MainLayout"
 import JobPage from "../pages/job/JobPage"
+import JobDetailPage from "../pages/job/JobDetailPage"
 
 const AppRouter = () => {
   return (
@@ -15,6 +16,7 @@ const AppRouter = () => {
         <Route path="/register" element={<Register/>} />
       <Route element={<MainLayout/>}>
         {/* <Route path="/dashboard" element={<Dashboard/>} /> */}
+        <Route path="/jobs/:id" element={<JobDetailPage/>}/>
         <Route path="jobPage" element={<JobPage/>}/>
         <Route path="/setting" element={<Setting/>} />
         <Route path="/application" element={<JobApplication/>}/>

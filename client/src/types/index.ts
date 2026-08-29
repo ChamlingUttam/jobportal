@@ -16,6 +16,8 @@ salary:number
 description:string
 requirements:string[]
 postedAt: string
+longDescription:string
+Responsibility:string
 }
 
 type Application ={
