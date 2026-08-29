@@ -102,6 +102,9 @@
 import React from "react";
 import type { Job } from "../../types"; // adjust path if needed
 import { Clock, MapPin, Wallet } from "lucide-react";
+import { useAppDispatch, useAppSelector } from "../../app/hooks";
+import { applyJob } from "../../features/application/jobApplicationSlice";
+import toast from "react-hot-toast";
 
 interface JobCardProps {
   job: Job;
@@ -122,7 +125,36 @@ const typeColor: Record<string, string> = {
   "Part-time": "bg-blue-600",
 };
 
+
 const JobCard: React.FC<JobCardProps> = ({ job }) => {
+
+const dispatch = useAppDispatch()
+
+const { user } = useAppSelector((state) => state.auth);
+
+  const handleApply = async () => {
+    if (!user) {
+      toast.error("Please login to apply for a job");
+      return;
+    }
+
+    try {
+      await dispatch(
+        applyJob({
+          userId: user.id,
+          jobId: job.id,
+        })
+      ).unwrap();
+
+      toast.success("Applied successfully");
+    } catch (error) {
+      toast.error(
+        typeof error === "string"
+          ? error
+          : "Failed to apply for this job"
+      );
+    }
+  };
   return (
     // h-full: fills the grid cell (grid rows must stretch, see note below)
     // flex flex-col: lets the footer/button anchor to the bottom via mt-auto
@@ -184,6 +216,7 @@ const JobCard: React.FC<JobCardProps> = ({ job }) => {
       <button
         className="w-full bg-blue-500 hover:bg-blue-600 text-white font-bold rounded-b-lg p-2"
         type="button"
+        onClick={handleApply}
       >
         Apply
       </button>

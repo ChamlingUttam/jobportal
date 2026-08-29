@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import type { shapeOfJobApplication } from "./jobApplicationTypes";
-import { getAllJobApplication, getUserApplication } from "../../services/application/jobApplicationApi";
+import { applyForJob, getAllJobApplication, getUserApplication } from "../../services/application/jobApplicationApi";
 
 
 
@@ -25,11 +25,24 @@ export const getAllApplication = createAsyncThunk(
 export const getMyApplication = createAsyncThunk(
 "job/getMyApplication",
    async({userId}:{userId:number})=>{
-    const userApplication = getUserApplication(userId)
+    const userApplication =await getUserApplication(userId)
     return userApplication
    }
 )
 
+// Apply for a job
+export const applyJob = createAsyncThunk(
+  "jobApplication/applyForJob",
+  async ({
+    userId,
+    jobId,
+  }: {
+    userId: number;
+    jobId: number;
+  }) => {
+    const application = await applyForJob(userId, jobId);
+    return application;
+  })
 
 
 
@@ -75,7 +88,26 @@ export const jobApplicationSlice = createSlice({
             state.loading=false
             state.error = action.error.message || "failed to load application"
         })
-    }
+
+         // APPLY FOR JOB
+    builder.addCase(applyJob.pending, (state) => {
+      state.loading = true;
+      state.error = null;
+    });
+
+    builder.addCase(applyJob.fulfilled, (state, action) => {
+      state.loading = false;
+      state.error = null;
+
+      state.application.push(action.payload);
+    });
+
+    builder.addCase(applyJob.rejected, (state, action) => {
+      state.loading = false;
+      state.error =
+        action.error.message || "Failed to apply for job";
+    })
+}
 
 })
 
