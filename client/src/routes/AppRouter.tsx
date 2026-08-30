@@ -1,4 +1,4 @@
-import { Route,Routes } from "react-router-dom"
+import { Navigate, replace, Route,Routes } from "react-router-dom"
 import Login from "../pages/auth/Login"
 import { Protected } from "./ProtectedRoute"
 import Dashboard from "../pages/dashboard/Dashboard"
@@ -12,6 +12,7 @@ import JobDetailPage from "../pages/job/JobDetailPage"
 const AppRouter = () => {
   return (
     <Routes>
+      <Route path="/" element={<Navigate to="/login" replace  />}/>
         <Route path="/login" element={<Login/>} />
         <Route path="/register" element={<Register/>} />
       <Route element={<MainLayout/>}>
