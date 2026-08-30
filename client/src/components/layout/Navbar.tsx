@@ -22,9 +22,9 @@ const Navbar = () => {
             <span><h1 className="font-bold text-white text-2xl">Job Portal</h1></span>
         </div>
         {/** right side -*/}
-       <div className="flex items-center justify-between w-full md:w-3xl">
+       <div className="flex items-center justify-between w-full">
          <div>
-            <ul className="flex md:gap-8 gap-4 pr-16 p-2 items-center text-white">
+            <ul className="flex md:gap-8 gap-4 pr-2 md:pr-16 p-2 items-center text-white">
                     <Link to={"/jobPage"}>
                 <div className="cursor-pointer gap-1 flex items-center">
                 <li><Home className="w-4 h-4"/></li><span className="text-xl  hidden md:block ">Home</span>
@@ -49,11 +49,11 @@ const Navbar = () => {
     <li className="h-10 w-10 rounded-full bg-blue-400 text-white flex items-center justify-center list-none">
         <User className="w-5 h-5"/>
     </li>
-    <span className="text-xl">{user?.name ?? "Profile"}</span>
+    <span className="md:text-xl text:sm ">{user?.name ?? "Profile"}</span>
 </div>
             </ul>
         </div>   
-        <div className="p-4">
+        <div className="md:p-4 p-2">
             <Logout/>
         </div>
         </div>   

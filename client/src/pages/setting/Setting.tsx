@@ -97,7 +97,7 @@ const Setting = () => {
 
           <button 
           onClick={handleChange}
-          type="submit" className='mt-2 bg-blue-500 hover:bg-blue-600 transition-colors text-white text-sm font-medium rounded-md py-2'>
+          type="button" className='mt-2 bg-blue-500 hover:bg-blue-600 transition-colors text-white text-sm font-medium rounded-md py-2'>
             Save Changes
           </button>
         </div>

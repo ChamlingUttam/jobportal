@@ -215,12 +215,12 @@ const { user } = useAppSelector((state) => state.auth);
         </div>
       </div>
       
-         <div className="flex  p-4">
+         <div className="flex items-center gap-1 px-4 pb-2">
            <Link to={`/jobs/${job.id}`}>
            see details
           </Link>
           <span>
-            <ArrowRight/>
+            <ArrowRight className="w-4 h-4"/>
           </span>
 
 

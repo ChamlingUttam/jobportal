@@ -40,17 +40,17 @@ const JobList = () => {
   console.log("jobs:", jobs, "loading:", loading, "error:", error);
   return (
     <div className="p-6 w-full lg:max-w-350 mx-auto bg-gray-900 text-white ">
-      <div className="w-full flex justify-between  p-2">
+      <div className="w-full flex flex-col md:flex-row md:justify-between gap-3 p-2">
       <span> 
-         <h1 className="mb-6 text-2xl md:text-3xl font-bold hidden md:block">
+         <h1 className="text-xl md:text-3xl font-bold">
         Open Positions ({filterJobs.length})
       </h1></span>
-      <div className=" relative ">
+      <div className="relative w-full lg:w-auto">
       
          <span>
         <input
         onChange={(e)=>setSearch(e.target.value)}
-         type="text" placeholder="search job by comapyn,titl,types..."  className="text-md text-white p-2 lg:w-sm w-full  border border-gray-400 rounded-lg" />
+         type="text" placeholder="search job by comapyn,titl,types..."  className="text-md text-white p-2 lg:w-80 w-full  border border-gray-400 rounded-lg" />
       </span>
       <span className=" absolute right-2  top-2">
         <Search className="text-gray-400 hidden lg:block"/>
@@ -61,7 +61,7 @@ const JobList = () => {
       
 
 
-     <div className="grid grid-cols-2 md:grid-cols-3  gap-4 items-stretch">
+     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 sm:gap-4 md:gap-6 items-stretch">
 
       {loading && (
         <Loader/>
